@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+
+ 
+
+    <link rel="stylesheet" href="../static/student.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+ 
+
+
+</head>
+<body onload = "attendance()">
+    
+
+
+<div class="wrapper" >
+
+   
+<div class="sidebar">
+        
+        <ul>
+            <li><h1>Dashboard</h1></li>
+            <li><h1>Student Profile</h1></li>
+            <li><h1>Tools</h1></li>
+            
+        </ul> 
+        
+    </div>
+
+
+    
+
+<!--sidebar ends-->
+
+
+<div class = "searchbar">
+
+
+  <form action = "/logout" method= "POST">
+    <h3> <button class="logout">Log Out</button> </h3>
+    </form>
+   
+
+
+ <div>
+
+
+
+
+<!--searchbar ends-->
+
+
+<div class ="content"> 
+
+
+
+              <h1> Attendance Record </h1>
+ 
+
+<div id = "record"> 
+              
+               <table>
+               <thead>
+               <tr>
+              
+               <th> First Name </th>
+               <th> Last Name </th>
+               <th> Date </th>
+               <th> Status </th>
+               
+               </tr>
+               </thead>
+
+               </table>
+             
+               </div>
+
+
+<!--content ends-->
+</div>
+
+</div>
+
+
+  <!--wrapper ends-->
+  
+
+  <script>
+    function attendance() {
+    
+    
+
+    var record = {{record|tojson}};
+    var length = parseInt("{{length}}")
+
+  
+
+  for (i = 0; i < length; i++) {
+ 
+   let str = `
+         
+              <table>
+               <tbody>
+                <tr>
+                <td>   ${record[i][1]}  </td>
+               <td>  ${record[i][2]}   </td>
+               <td>   ${record[i][3]}  </td>
+               <td>  ${record[i][4]}   </td>
+               </tr>
+               </tbody>
+              
+               </table>
+              
+             `
+               ;
+  
+  
+  var div1 = document.createElement("div");
+  div1.innerHTML =str ;
+  document.getElementById("record").appendChild(div1);
+
+  
+}    
+
+     
+    }
+  
+    
+  </script>
+
+
+
+
+
+        
+</body>
+</html>

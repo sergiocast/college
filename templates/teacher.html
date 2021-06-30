@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+
+ 
+
+    <link rel="stylesheet" href="../static/teacher.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+ 
+
+
+</head>
+<body onload="students(); onload=enter(); onload=showregister()">
+    
+
+
+<div class="wrapper" >
+
+   
+<div class="sidebar">
+        
+        <ul>
+            <li><h1>Dashboard</h1></li>
+            <li><h1>Teacher Profile</h1></li>
+            <li><h1>Tools</h1></li>
+            
+        </ul> 
+        
+    </div>
+
+
+    
+
+<!--sidebar ends-->
+
+
+<div class = "searchbar">
+
+<h2> <input type= "text" class ="search" placeholder ="Search for.."> <button class= "getText"> Search</button></h2>
+
+<form action = "/logout" method= "POST">
+  <h3> <button class="logout">Log Out</button> </h3>
+  </form>
+
+
+ <div>
+
+
+
+
+<!--searchbar ends-->
+
+
+<div class ="content"> 
+
+
+
+              <h1> Teacher Menu </h1>
+      
+         <button class ="button" onclick ="viewmark();"> Mark Register</button>
+     
+        <button class ="button" onclick ="viewregister();"> View Register</button>
+
+
+
+ <!--table that shows all students and enter their attendance-->
+  <form action = "/save" method= "POST">
+<div id = "register"> 
+  
+    <table>
+    <thead>
+    <tr>
+    <th> First Name </th>
+    <th> Last Name </th>
+    <th> Date </th>
+    <th> Status </th>
+    </tr>
+   </thead>
+
+   </table>
+               
+            </div> 
+  <!--error message displayed when all status fields not filled-->
+             <div id ="message">
+            
+            </div>
+        
+            <input type ="submit" value ="Save" id = "save">
+            </form> 
+
+           
+   <!--this is the table to view all attendance of students from all dates-->
+    
+            <div id = "register2"> 
+  
+                <table>
+                <thead>
+                <tr>
+                <th> First Name </th>
+                <th> Last Name </th>
+                <th> Date </th>
+                <th> Status </th>
+                </tr>
+               </thead>
+               </table>
+              </div>          
+
+
+<!--content ends-->
+</div>
+
+</div>
+
+
+  <!--wrapper ends-->
+
+  <script>
+    function enter() {
+        
+     if ("{{filled}}" == "false") {
+     let e = ` <h1 style= "color:red; font-size:18px;">Enter Present/Absent ALL fields</h1>`
+     document.getElementById('message').innerHTML = e;
+     setTimeout(() => message.innerHTML= "", 4000);
+    }
+    if ("{{filled}}" == "true") {
+    let e = `<h1 style= "color:green; font-size:18px;"> Success register saved! </h1>`
+    document.getElementById('message').innerHTML = e;
+    setTimeout(() => message.innerHTML= "", 4000);
+    }
+    }
+      
+   </script>
+  
+
+
+  
+  <script>
+    function students() {
+    
+    //table for all students to mark attendance
+
+    var students = {{students|tojson}};
+    var length = parseInt("{{length}}")
+
+    
+  date =  new Date();
+  var month = date.getMonth() +1;
+  var day = date.getDate();
+  var year = date.getFullYear();
+  let DATE = month + "/" + day + "/" + year;
+
+   //had to use input type=hidden to use the name attribute which is needed to pass it to python
+   //had to put the students first names, last names and date in the value and in the normal string place
+   //because in the value it will actually get added to the database but wont show up on the page
+   //and in the normal string place, i just put it so it shows up on the page
+   //the last td is for the username it is NOT shown on the page, its just used to enter the username on the database
+   //that way using the username we could differentiate the students on the student page
+
+  for (i = 0; i < length; i++) {
+ 
+   let str = `
+         
+              
+             
+             <table>
+               
+               <tbody>
+                <tr>
+             
+               <td>   <input type = "hidden" value= "${students[i][1]}" name="first${i}" >  ${students[i][1]}  </td>
+               <td>  <input type = "hidden" value= "${students[i][2]}" name="last${i}">   ${students[i][2]}   </td>
+               <td>   <input type = "hidden" value= "${DATE}" name="date${i}">     ${DATE}     </td>
+  <td class = "attendance">  <input type = "text" placeholder= "Enter Present or Absent" name="status${i}"> </td>
+          <td style="display:none;"> <input type = "hidden" value= "${students[i][3]}" name="username${i}"> </td>
+               </tr>
+               </tbody>
+              
+               </table>
+              
+             `
+               ;
+  
+  
+  var div1 = document.createElement("div");
+  div1.innerHTML =str ;
+  document.getElementById("register").appendChild(div1);
+
+  
+}    
+
+     
+    }
+  
+    
+  </script>
+
+
+<script>
+
+  //table for all attendance records of all dates
+  function showregister() {
+
+//using data from students table in database instead of users table
+//that data gets stored in the attendance variable
+var attendance = {{attendance|tojson}};
+var length2 = parseInt("{{length2}}")
+
+  for (i = 0; i < length2; i++) {
+ 
+   let str = `
+         
+              <table>
+               
+               <tbody>
+                <tr>
+               <td>    ${attendance[i][1]}  </td>
+               <td>    ${attendance[i][2]}   </td>
+               <td>    ${attendance[i][3]}   </td>
+               <td>    ${attendance[i][4]}   </td>  
+              
+               </tr>
+               </tbody>
+              
+               </table>
+              
+             `
+               ;
+  
+  
+  var div1 = document.createElement("div");
+  div1.innerHTML =str ;
+  document.getElementById("register2").appendChild(div1);
+
+  
+}    
+
+
+}    
+
+  
+</script>
+
+
+
+<script>
+
+  //when mark register button is clicked, it displays the mark table and hides the register table
+  function viewmark() {
+
+document.getElementById("register").style.visibility = "visible";
+document.getElementById("save").style.visibility = "visible";
+document.getElementById("register2").style.visibility = "hidden";
+
+
+}    
+
+  
+</script>
+
+
+<script>
+
+  //when view register button is clicked, it displays the register table and hides the mark table
+
+  function viewregister() {
+
+document.getElementById("register").style.visibility = "hidden";
+document.getElementById("save").style.visibility = "hidden";
+document.getElementById("register2").style.visibility = "visible";
+
+
+
+}    
+
+  
+</script>
+
+
+
+
+        
+</body>
+</html>
+

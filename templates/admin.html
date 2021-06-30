@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+
+ 
+
+    <link rel="stylesheet" href="../static/admin.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+ 
+
+
+</head>
+<body onload="enter(); users()">
+    
+  
+
+<div class="wrapper">
+
+   
+
+
+
+    <div class="sidebar">
+        
+        <ul>
+            <li><h1>Dashboard</h1></li>
+            <li><h1>Admin Profile</h1></li>
+            <li><h1>Tools</h1></li>
+            
+        </ul> 
+        
+    </div>
+
+<!--sidebar ends-->
+
+
+<div class = "searchbar">
+<h2> <input type= "text" class ="search" placeholder ="Search for.."> <button class= "getText"> Search</button></h2>
+
+  
+    <form action = "/logout" method= "POST">
+     <h3> <button class="logout">Log Out</button> </h3>
+     </form>
+  <div>
+
+<!--searchbar ends-->
+
+
+<div class ="content"> 
+
+
+
+
+<!--add user table-->
+
+<div class= "adduser"> 
+    <form action= "/add" method= "POST">
+        
+               <h4>
+               <table>
+               <thead>
+               <tr>
+             
+               <th> First Name </th>
+               <th> Last Name </th>
+               <th> Username </th>
+               <th> Password </th>
+               <th> Privilege </th>
+            
+               </tr>
+               </thead>
+
+
+               <tbody>
+                <tr>
+                    <td>   <input type = "text" placeholder= "Enter First Name" name="first"> </td>
+                    <td>   <input type = "text" placeholder= "Enter Last Name" name= "last">  </td>
+                    <td>   <input type = "text" placeholder= "Enter Username" name="username"> </td>
+                    <td>   <input type = "text" placeholder= "Enter Password" name="password"> </td>
+                    <td>   <input type = "text" placeholder= "Enter Privelege" name="privelege"></td>
+                    
+                    </tr>
+               
+               
+               </tbody>
+               </table>
+               </h4>
+
+               <h2> <button class= "Add"> Add User</button></h2> 
+               <div id = "message">
+                
+               </div>
+            </form>
+          </div>
+
+
+
+<div class="usertext">
+<h5> All Users </h5>
+</div>
+
+<!--all users-->
+
+<div id= "users"> 
+               
+  <h4>
+    <table>
+      <thead>
+      <tr>
+      <th> ID </th>
+      <th> First Name </th>
+      <th> Last Name </th>
+      <th> Username </th>
+      <th> Password </th>
+      <th> Privilege </th>
+   
+      <th> DELETE </th>
+      </tr>
+      </thead>
+      </table>
+      </h4>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+<!--content ends-->
+</div>
+
+
+
+
+  <!--wrapper ends-->
+   </div>
+
+
+
+
+
+   <script>
+    function enter() {
+        
+     if ("{{enter}}" == "fail") {
+     let e = ` <h1 style= "color:red;">Enter ALL fields below</h1>`
+     document.getElementById('message').innerHTML = e;
+     setTimeout(() => message.innerHTML= "", 4000);
+    }
+    if ("{{enter}}" == "success") {
+    let e = `<h1 style= "color:green;"> User succesfully entered! </h1>`
+    document.getElementById('message').innerHTML = e;
+    setTimeout(() => message.innerHTML= "", 4000);
+    }
+    }
+      
+   </script>
+
+<script>
+    function users() {
+     
+    //var users = "{{users|tojson}}";
+    //var users = '{{users|tojson}}';
+    var users = {{users|tojson}};
+    //var users = "{{users}}"
+   //var users = ((users|tojson));
+    var length = parseInt("{{length}}")
+    //var users = JSON.parse("{{users}}")
+    
+
+  for (i = 0; i < length; i++) {
+ 
+   let str = `<h4>
+             <table>
+               
+               <tbody>
+                <tr>
+               <td>    ${users[i][0]}      </td>
+               <td>     ${users[i][1]}      </td>
+               <td>     ${users[i][2]}        </td>
+               <td>      ${users[i][3]}       </td>
+               <td>     ${users[i][4]}        </td>
+               <td>     ${users[i][5]}        </td>
+               <td>  <button class= "delete"> DELETE</button>  </td>
+              
+               </tr>
+               </tbody>
+               </table>
+               <h4>`;
+  
+  
+  var div1 = document.createElement("div");
+      
+ 
+   div1.innerHTML = str;
+   document.getElementById("users").appendChild(div1);
+
+  
+}    
+  
+
+
+    }
+  
+    
+  </script>
+
+
+
+
+
+
+
+        
+</body>
+</html>

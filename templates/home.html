@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+ 
+
+<link rel="stylesheet" href="../static/home.css" />
+
+
+
+</head>
+<body onload="notfound()">
+
+
+       <div class="header">
+    
+            <input class = "homebutton" type ="submit" value= "Home">
+          
+          
+          </div>
+
+<div class="wrapper">
+       <form action= "/login" method= "POST">
+              <div class="content">
+                     <div id="error">
+                     
+                     </div>
+             <p> <input type = "text" name= "username"  placeholder= "Username" class="textbox"/></p>
+             <p> <input type = "text" name= "password" placeholder= "Password" class="textbox" /></p>
+             <a href= "" target = "_blank"><input class = "button" type ="submit" value= "Log In" name=""></a> 
+            </div>
+            </div>
+               
+               </form>
+</div>
+
+
+
+<script>
+       function notfound() {
+           
+        if ("{{found}}" == "false") {
+
+        
+    
+       let e = ` <h1>The username is not connected to an account</h1>`
+        
+         document.getElementById('error').innerHTML = e;
+         setTimeout(() => error.innerHTML= "", 4000);
+        
+       }
+         }
+   
+     </script>
+
+
+
+
+
+
+
+</body>
+</html>

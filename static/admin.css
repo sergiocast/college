@@ -1,0 +1,264 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  
+  body{
+     
+     width: 100%;
+     height: 100%;
+     overflow-x: hidden;
+     background-color:#C9CBCD;
+  
+  }
+  
+  
+  
+  .wrapper{
+    display: flex;
+    position: relative;
+    color: #bdb8d7;
+  
+   
+    
+  }
+  
+  
+  .wrapper .sidebar{
+    width: 200px;
+    height: 100%;
+    background: #005faf;
+    padding: 30px 0px;
+    position: fixed;
+  }
+  
+  
+  
+  .wrapper .sidebar ul li{
+    padding: 15px;
+    border-bottom: 1px solid #bdb8d7;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }  
+  .wrapper .sidebar ul li h1{
+    position: relative;
+    left:20px;
+    font-size:20px;
+    font-weight:normal;
+  }     
+  
+  
+  
+  .wrapper .sidebar ul li:hover{
+    background-color: #0e94d4;
+  }
+      
+  .searchbar{
+    position: absolute;
+    width: 1100px;
+    height:60px;
+    background-color:white;
+    left: 200px;
+  
+  }
+  
+  
+  .searchbar h2{
+    position: relative;
+    font-size: 20px;
+    left:40px;
+    top:15px;
+    font-family: Helvetica;
+    font-weight: normal;
+    
+  }
+  
+  .searchbar h3{
+    position: relative;
+    font-size: 20px;
+    left:820px;
+    top:-10px;
+    font-family: Helvetica;
+    font-weight: normal;
+    color: black;
+    
+  }
+  
+  
+  .search{
+    width: 300px;
+    height:27px;
+    padding:5px;
+    position: relative;
+  
+  }
+  
+  .getText{
+  
+      position: relative;
+      background-color : #40A35B;
+      color:white;
+      padding: 0;
+      border: none;
+      font-size :15px;
+      width: 75px;
+      height: 25px;
+      border-radius: 4px;
+     
+      
+      
+  
+  }
+  
+  
+  
+  
+  .content{
+  
+    width: 1050px;
+    position: absolute;
+    right: 30px;
+    top: 100px;
+    background-color: white;
+    height: 3000px;
+    border: thin solid #DDDDDD;
+  
+  
+  
+  
+  }
+  
+   table{
+     position:relative;
+     top:20px;
+     left:20px;
+    
+   }
+
+  table, th, td {
+    position: relative;
+    
+    border-collapse: collapse;
+    padding:0px;
+    table-layout: fixed;
+    width: 140px;
+    
+    border:0.01em solid #9A9EA2;
+  
+  }
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  table th{
+    
+    color:black;
+  }
+  table td{
+    color: gray;
+  }
+  
+  .Add{
+  
+      position: relative;
+      background-color : #40A35B;
+      color:white;
+      padding: 0;
+      border: none;
+      font-size :15px;
+      width: 135px;
+      height: 37px;
+      border-radius: 4px;
+      top:-130px;
+      right:10px;
+     
+      
+      
+  
+  }
+  
+  
+  .adduser{
+    position:relative;
+    top:60px;
+  }
+  
+  .usertext{
+    position: relative;
+    top:100px;
+    left:20px;
+    font-size: 35px; 
+    color:#073390;
+  }
+  
+  #users{
+    position:relative;
+    top:110px;
+  }
+  
+  
+  .delete{
+  
+      position: relative;
+      background-color : #D3350F;
+      color:white;
+      padding: 0;
+      border: none;
+      font-size :15px;
+      width: 90px;
+      height: 30px;
+      border-radius: 4px;
+     
+      
+      
+  
+  }
+
+  
+  .adduser input{
+ 
+    height:23px;
+    width:120px;
+    border:none;
+    outline:none;
+  }
+
+  #message{
+    position:relative;
+    top:-145px;
+    left:190px;
+    font-size:10px;
+    width: 300px;
+    height:40px;
+  
+  }
+
+  .logout {
+    position:relative;
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+    font-size:22px;
+    left:15px;
+
+
+}
+
+.logout:hover{
+  color:red;
+}
+
+
+
+
+
+
+
+
+  
